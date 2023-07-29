@@ -3,7 +3,52 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-imagen = cv2.imread("Clase1\images\onerice.bmp")
+#Cambiar slash para windows a \ y usar / para linux
+imagen = cv2.imread("images/onerice.bmp")
 
 plt.imshow(imagen)
+plt.show()
+
+#obtener datos de la imagen
+def comoes(img):
+  print('Los rasgos principales de la imagen son: ')
+  # shape dice la dimension en pixeles de la imagen
+  print('Dimension: ', img.shape)
+  #Obtener el pixel de mayor y menor intensidad
+  print('Max', np.max(img))
+  print('Min', np.min(img))
+
+comoes(imagen)
+
+# Seleccion de la imagen considerando el primer canal
+
+imm = imagen[:,:,0]
+comoes(imm)
+# Mapeo de la imagen original por el color gris
+plt.imshow(imm, cmap='gray')
+plt.show()
+
+
+# Segmentacion basada en umbrales
+def segmentacion(x, t):
+  (N,M)= x.shape
+  Y = np.zeros((N,M))
+  area = 0
+  for i in range(N):
+    for j in range(M):
+      if x[i,j] > t:
+        Y[i,j] = 255 #color blanco
+        area = area + 1
+
+  print('Resultado de la segmentacion: ', area)
+  return Y
+
+
+  # llamada a la funcion de segmentacion
+#dato curioso, se debe utilizar la imagen con el primer canal, para que de resultado
+# el tema es que tiene que tener mapeado al gris
+
+imgSegmentada = segmentacion(imm, 115)
+comoes(imgSegmentada)
+plt.imshow(imgSegmentada)
 plt.show()
