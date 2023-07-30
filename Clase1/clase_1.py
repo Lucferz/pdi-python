@@ -3,12 +3,18 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-#Cambiar slash para windows a \ y usar / para linux
+# uploaded = files.upload()
+
+# Cambiar slash para windows a \ y usar / para linux
 imagen = cv2.imread("images/onerice.bmp")
 
-plt.imshow(imagen)
-plt.show()
+# descomentar para colab y comentar el de arriba
+# imagen = imread('onerice.bmp')
 
+# plt.imshow(imagen)
+# plt.show()
+
+cv2.imshow('Onerice', imagen)
 #obtener datos de la imagen
 def comoes(img):
   print('Los rasgos principales de la imagen son: ')
@@ -25,8 +31,8 @@ comoes(imagen)
 imm = imagen[:,:,0]
 comoes(imm)
 # Mapeo de la imagen original por el color gris
-plt.imshow(imm, cmap='gray')
-plt.show()
+img_map_gray = cv2.applyColorMap(imm, cv2.IMREAD_GRAYSCALE)
+cv2.imshow('mapeo al gris', img_map_gray)
 
 
 # Segmentacion basada en umbrales
@@ -50,5 +56,4 @@ def segmentacion(x, t):
 
 imgSegmentada = segmentacion(imm, 115)
 comoes(imgSegmentada)
-plt.imshow(imgSegmentada)
-plt.show()
+cv2.imshow('imagen segmentada', imgSegmentada)

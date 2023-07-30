@@ -1,5 +1,8 @@
-descargar imagenes de: 
+Obs: Tener en cuenta que si se hace en colab se tendra que importar adicionalmente
+- from google.colab import files
+- from IPython.display import Image
 
+Y ademas descomentar el codigo comentado
 El histograma representa el numero de pixeles en una imagen
 
 cuantizacion 
